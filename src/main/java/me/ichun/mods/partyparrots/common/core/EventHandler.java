@@ -23,7 +23,7 @@ public class EventHandler
         if(event.getEntity() instanceof EntityParrot)
         {
             EntityParrot parrot = (EntityParrot)event.getEntity();
-            if(parrot.isFlying() && PartyParrots.partyWhenFlying || !parrot.isFlying() && PartyParrots.partyWhenStill)
+            if(parrot.isFlying() && PartyParrots.partyWhenFlying || !parrot.isFlying() && (!parrot.isSitting() && PartyParrots.partyWhenStanding || parrot.isSitting() && PartyParrots.partyWhenSitting))
             {
                 parrot.partyParrot = true;
             }

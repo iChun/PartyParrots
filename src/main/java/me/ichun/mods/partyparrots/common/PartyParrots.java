@@ -27,7 +27,8 @@ public class PartyParrots
 
     public static boolean partyWhenOnShoulder = true;
     public static boolean partyWhenFlying = true;
-    public static boolean partyWhenStill = true;
+    public static boolean partyWhenStanding = true;
+    public static boolean partyWhenSitting = false;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -43,7 +44,8 @@ public class PartyParrots
         boolean oldShoulder = partyWhenOnShoulder;
         partyWhenOnShoulder = config.getBoolean("partyWhenOnShoulder", "general", true, "Do parrots party when they're on your shoulder?");
         partyWhenFlying = config.getBoolean("partyWhenFlying", "general", true, "Do parrots party when they're flying?");
-        partyWhenStill = config.getBoolean("partyWhenStill", "general", true, "Do parrots party when they're standing or sitting?");
+        partyWhenStanding = config.getBoolean("partyWhenStill", "general", true, "Do parrots party when they're standing?");
+        partyWhenSitting = config.getBoolean("partyWhenSitting", "general", false, "Do parrots party when they're sitting?");
 
         if(oldShoulder && !partyWhenOnShoulder)
         {
