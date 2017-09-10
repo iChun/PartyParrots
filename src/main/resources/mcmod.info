@@ -1,0 +1,21 @@
+[
+{
+  "modid" : "partyparrots",
+  "name" : "PartyParrots",
+  "version" : "${version}",
+  "url" : "http://ichun.me/mods/party-parrots/",
+  "credits" : "",
+  "authors": [
+    "iChun"
+  ],
+  "description": "Dance parrot, dance!",
+  "logoFile" : "",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ],
+  "dependancies": [
+    "Forge"
+  ]
+}
+]
