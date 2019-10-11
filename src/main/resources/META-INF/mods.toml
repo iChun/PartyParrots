@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[28,)" #forge version dep
+issueTrackerURL="https://github.com/iChun/PartyParrots/issues"
+
+[[mods]]
+    modId="partyparrots"
+    version="${file.jarVersion}" #mandatory
+    displayName="Party Parrots"
+    displayURL="https://ichun.me/"
+    authors="iChun"
+    description='''
+    Don't matter that there's no music, parrots wanna party!
+
+    Dance parrot, dance!
+    '''
+
+[[dependencies.betterthanbunnies]]
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.betterthanbunnies]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
