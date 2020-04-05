@@ -35,7 +35,7 @@ public class TwerkHandler
     {
         if(event.player.world.isRemote && event.phase == TickEvent.Phase.END)
         {
-            if(event.player.isSneaking() && !playerTwerks.containsKey(event.player))
+            if(event.player.isShiftKeyDown() && !playerTwerks.containsKey(event.player))
             {
                 playerTwerks.put(event.player, new TwerkInfo());
             }
@@ -101,7 +101,7 @@ public class TwerkHandler
             {
                 return false; //our player is dead. kill.
             }
-            if(player.isSneaking() && !playerSneak) // new twerk
+            if(player.isShiftKeyDown() && !playerSneak) // new twerk
             {
                 twerks++;
                 twerkTimeout = 0;
@@ -111,7 +111,7 @@ public class TwerkHandler
             {
                 return false; //we're stopped twerking, kill.
             }
-            playerSneak = player.isSneaking();
+            playerSneak = player.isShiftKeyDown();
             return true;
         }
 

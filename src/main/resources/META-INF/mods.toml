@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[28,)" #forge version dep
+loaderVersion="[31,)" #forge version dep
 issueTrackerURL="https://github.com/iChun/PartyParrots/issues"
 
 [[mods]]
@@ -17,12 +17,12 @@ issueTrackerURL="https://github.com/iChun/PartyParrots/issues"
 [[dependencies.partyparrots]]
     modId="forge"
     mandatory=true
-    versionRange="[28,)"
+    versionRange="[31,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.partyparrots]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2,1.16)"
     ordering="NONE"
     side="BOTH"

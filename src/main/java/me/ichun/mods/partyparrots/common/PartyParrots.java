@@ -86,7 +86,7 @@ public class PartyParrots
             registerTwerkHandler();
         }
 
-        private void onConfigReload(ModConfig.ConfigReloading event)
+        private void onConfigReload(ModConfig.Reloading event)
         {
             registerTwerkHandler();
         }
