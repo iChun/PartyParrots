@@ -24,8 +24,8 @@ public class EventHandler
         {
             ParrotEntity parrot = (ParrotEntity)event.getEntity();
             if(parrot.isFlying() && PartyParrots.config.partyFlying.get() ||
-                    !parrot.isFlying() && (!parrot.isSitting() && PartyParrots.config.partyStanding.get() ||
-                            parrot.isSitting() && PartyParrots.config.partySitting.get()))
+                    !parrot.isFlying() && (!parrot.func_233684_eK_() && PartyParrots.config.partyStanding.get() ||
+                            parrot.func_233684_eK_() && PartyParrots.config.partySitting.get())) //func_233684_eK_() = isSitting()
             {
                 parrot.partyParrot = true;
             }
