@@ -24,8 +24,8 @@ public class EventHandler
         {
             ParrotEntity parrot = (ParrotEntity)event.getEntity();
             if(parrot.isFlying() && PartyParrots.config.partyFlying.get() ||
-                    !parrot.isFlying() && (!parrot.func_233684_eK_() && PartyParrots.config.partyStanding.get() ||
-                            parrot.func_233684_eK_() && PartyParrots.config.partySitting.get())) //func_233684_eK_() = isSitting()
+                    !parrot.isFlying() && (!parrot.isSleeping() && PartyParrots.config.partyStanding.get() ||
+                            parrot.isSleeping() && PartyParrots.config.partySitting.get())) //func_233684_eK_() = isSitting() (1.16.3+ = isSleeping?? [more like client-side flag])
             {
                 parrot.partyParrot = true;
             }
