@@ -1,18 +1,17 @@
 package me.ichun.mods.partyparrots.common;
 
 import me.ichun.mods.partyparrots.client.core.TwerkHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.network.FMLNetworkConstants;
-import org.apache.commons.lang3.tuple.Pair;
+import net.minecraftforge.fmllegacy.network.FMLNetworkConstants;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,11 +28,11 @@ public class PartyParrots
 
     public PartyParrots()
     {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> this::setupConfig);
-        DistExecutor.runWhenOn(Dist.DEDICATED_SERVER, () -> () -> LOGGER.log(Level.ERROR, "You are loading " + MOD_NAME + " on a server. " + MOD_NAME + " is a client only mod!"));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> this::setupConfig);
+        DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> LOGGER.log(Level.ERROR, "You are loading " + MOD_NAME + " on a server. " + MOD_NAME + " is a client only mod!"));
 
         //Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
     }
 
     private void setupConfig()
@@ -87,12 +86,12 @@ public class PartyParrots
             FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onConfigReload);
         }
 
-        private void onConfigLoad(ModConfig.Loading event)
+        private void onConfigLoad(ModConfigEvent.Loading event)
         {
             registerTwerkHandler();
         }
 
-        private void onConfigReload(ModConfig.Reloading event)
+        private void onConfigReload(ModConfigEvent.Reloading event)
         {
             registerTwerkHandler();
         }

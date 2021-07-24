@@ -2,8 +2,8 @@ package me.ichun.mods.partyparrots.client.core;
 
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.animal.Parrot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.TickEvent;
@@ -15,14 +15,14 @@ import java.util.WeakHashMap;
 
 public class TwerkHandler
 {
-    public static WeakHashMap<PlayerEntity, TwerkInfo> playerTwerks = new WeakHashMap<>();
+    public static WeakHashMap<Player, TwerkInfo> playerTwerks = new WeakHashMap<>();
 
     @SubscribeEvent
     public void onRenderLivingPre(RenderLivingEvent.Pre event)
     {
-        if(event.getEntity() instanceof ParrotEntity)
+        if(event.getEntity() instanceof Parrot)
         {
-            ParrotEntity parrot = (ParrotEntity)event.getEntity();
+            Parrot parrot = (Parrot)event.getEntity();
             if(PartyParrots.config.partyTwerk.get() && withinTwerkRange(parrot))
             {
                 parrot.partyParrot = true;
@@ -33,9 +33,9 @@ public class TwerkHandler
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event)
     {
-        if(event.player.world.isRemote && event.phase == TickEvent.Phase.END)
+        if(event.player.level.isClientSide && event.phase == TickEvent.Phase.END)
         {
-            if(event.player.isSneaking() && !playerTwerks.containsKey(event.player))
+            if(event.player.isShiftKeyDown() && !playerTwerks.containsKey(event.player))
             {
                 playerTwerks.put(event.player, new TwerkInfo());
             }
@@ -47,7 +47,7 @@ public class TwerkHandler
     {
         if(event.phase == TickEvent.Phase.END)
         {
-            if(!Minecraft.getInstance().isGamePaused())
+            if(!Minecraft.getInstance().isPaused())
             {
                 playerTwerks.entrySet().removeIf(e -> !e.getValue().tick(e.getKey()));
             }
@@ -71,11 +71,11 @@ public class TwerkHandler
         playerTwerks.clear();
     }
 
-    public boolean withinTwerkRange(ParrotEntity parrot)
+    public boolean withinTwerkRange(Parrot parrot)
     {
-        for(Map.Entry<PlayerEntity, TwerkInfo> e : playerTwerks.entrySet())
+        for(Map.Entry<Player, TwerkInfo> e : playerTwerks.entrySet())
         {
-            if(e.getValue().isTwerking() && parrot.getDistance(e.getKey()) < PartyParrots.config.partyTwerkRange.get())
+            if(e.getValue().isTwerking() && parrot.distanceTo(e.getKey()) < PartyParrots.config.partyTwerkRange.get())
             {
                 return true;
             }
@@ -95,13 +95,13 @@ public class TwerkHandler
             playerSneak = true;
         }
 
-        public boolean tick(PlayerEntity player)
+        public boolean tick(Player player)
         {
-            if(player.removed)
+            if(player.isRemoved())
             {
                 return false; //our player is dead. kill.
             }
-            if(player.isSneaking() && !playerSneak) // new twerk
+            if(player.isShiftKeyDown() && !playerSneak) // new twerk
             {
                 twerks++;
                 twerkTimeout = 0;
@@ -111,7 +111,7 @@ public class TwerkHandler
             {
                 return false; //we're stopped twerking, kill.
             }
-            playerSneak = player.isSneaking();
+            playerSneak = player.isShiftKeyDown();
             return true;
         }
 
