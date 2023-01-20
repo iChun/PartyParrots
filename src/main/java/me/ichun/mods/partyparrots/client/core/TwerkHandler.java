@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Map;
@@ -55,13 +55,13 @@ public class TwerkHandler
     }
 
     @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event)
+    public void onWorldLoad(LevelEvent.Load event)
     {
         Minecraft.getInstance().execute(this::clean);
     }
 
     @SubscribeEvent
-    public void onLoggedOutEvent(ClientPlayerNetworkEvent.LoggedOutEvent event)
+    public void onLoggedOutEvent(ClientPlayerNetworkEvent.LoggingOut event)
     {
         Minecraft.getInstance().execute(this::clean);
     }
