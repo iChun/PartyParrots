@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.ichun.mods.partyparrots.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "ClientLevelMixin",
+    "LivingEntityRendererMixin",
+    "ParrotAccessorMixin",
+    "ParrotModelInvokerMixin",
+    "ParrotModelMixin",
+    "PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

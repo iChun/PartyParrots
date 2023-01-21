@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "partyparrots",
+  "version": "${version}",
+
+  "name": "Party Parrots",
+  "description": "Don't matter that there's no music, parrots wanna party!\n\nDance parrot, dance!",
+  "authors": [
+    "iChun"
+  ],
+  "contact": {
+    "homepage": "https://github.com/iChun/PartyParrots",
+    "issues": "https://github.com/iChun/PartyParrots/issues"
+  },
+
+  "license": "GNU Lesser General Public License v3.0",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.ichun.mods.partyparrots.loader.fabric.LoaderFabricClient"
+    ]
+  },
+
+  "mixins": [
+    "partyparrots.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric-api": "*",
+    "minecraft": "~1.19.3",
+    "java": ">=17",
+    "completeconfig-base": ">=2.2.0"
+  }
+}
