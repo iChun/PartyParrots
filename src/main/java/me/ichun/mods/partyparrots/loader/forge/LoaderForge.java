@@ -36,10 +36,4 @@ public class LoaderForge extends PartyParrots
         //register the config. This loads the config for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, configBuilder.build(), MOD_ID + ".toml");
     }
-
-    @Override
-    public boolean isFabricEnv()
-    {
-        return false;
-    }
 }

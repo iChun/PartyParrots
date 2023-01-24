@@ -22,10 +22,4 @@ public class LoaderFabricClient extends PartyParrots
 
         PartyParrots.eventHandlerClient = new EventHandlerClientFabric();
     }
-
-    @Override
-    public boolean isFabricEnv()
-    {
-        return true;
-    }
 }

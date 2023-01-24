@@ -17,6 +17,4 @@ public abstract class PartyParrots
     public static Config config;
 
     public static EventHandlerClient eventHandlerClient;
-
-    public abstract boolean isFabricEnv();
 }
