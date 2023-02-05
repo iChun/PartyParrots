@@ -1,67 +1,56 @@
-package me.ichun.mods.partyparrots.client.core;
+package me.ichun.mods.partyparrots.common.core;
 
 import me.ichun.mods.partyparrots.common.PartyParrots;
+import me.ichun.mods.partyparrots.mixin.ParrotAccessorMixin;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public class TwerkHandler
+public abstract class TwerkHandler
 {
     public static WeakHashMap<Player, TwerkInfo> playerTwerks = new WeakHashMap<>();
 
-    @SubscribeEvent
-    public void onRenderLivingPre(RenderLivingEvent.Pre event)
+    public void onRenderLivingPre(LivingEntity living)
     {
-        if(event.getEntity() instanceof Parrot)
+        if(living instanceof Parrot parrot)
         {
-            Parrot parrot = (Parrot)event.getEntity();
             if(PartyParrots.config.partyTwerk.get() && withinTwerkRange(parrot))
             {
-                parrot.partyParrot = true;
+                ((ParrotAccessorMixin)parrot).setPartyParrot(true);
             }
         }
     }
 
-    @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event)
+    public void onPlayerTickEnd(Player player)
     {
-        if(event.player.level.isClientSide && event.phase == TickEvent.Phase.END)
+        if(player.level.isClientSide)
         {
-            if(event.player.isShiftKeyDown() && !playerTwerks.containsKey(event.player))
+            if(player.isShiftKeyDown() && !playerTwerks.containsKey(player))
             {
-                playerTwerks.put(event.player, new TwerkInfo());
+                playerTwerks.put(player, new TwerkInfo());
             }
         }
     }
 
-    @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
+    public void onClientTickEnd(Minecraft client)
     {
-        if(event.phase == TickEvent.Phase.END)
+        if(!client.isPaused())
         {
-            if(!Minecraft.getInstance().isPaused())
-            {
-                playerTwerks.entrySet().removeIf(e -> !e.getValue().tick(e.getKey()));
-            }
+            playerTwerks.entrySet().removeIf(e -> !e.getValue().tick(e.getKey()));
         }
+
     }
 
-    @SubscribeEvent
-    public void onWorldLoad(LevelEvent.Load event)
+    public void onLevelLoad()
     {
         Minecraft.getInstance().execute(this::clean);
     }
 
-    @SubscribeEvent
-    public void onLoggedOutEvent(ClientPlayerNetworkEvent.LoggingOut event)
+    public void onClientDisconnected()
     {
         Minecraft.getInstance().execute(this::clean);
     }
@@ -83,7 +72,7 @@ public class TwerkHandler
         return false;
     }
 
-    public class TwerkInfo
+    public static class TwerkInfo
     {
         public int twerks;
         public boolean playerSneak;
