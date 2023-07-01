@@ -11,6 +11,8 @@ public class ConfigFabric extends Config
 {
     public static Party PARTY = null;
 
+    public me.lortseam.completeconfig.data.Config configInstance;
+
     public ConfigFabric()
     {
         partyShoulder = new ConfigWrapper<>(() -> PARTY.partyShoulder, v -> PARTY.partyShoulder = v);
@@ -43,22 +45,22 @@ public class ConfigFabric extends Config
             return "General configs that don't fit any other category.";
         }
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partyShoulder.name", descriptionKey = "config.partyparrots.prop.partyShoulder.desc", comment = "Do parrots party when they're on your shoulder?")
+        @ConfigEntry(nameKey = "prop.partyShoulder.name", descriptionKey = "prop.partyShoulder.desc", comment = "Do parrots party when they're on your shoulder?")
         public boolean partyShoulder = true;
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partyFlying.name", descriptionKey = "config.partyparrots.prop.partyFlying.desc", comment = "Do parrots party when they're flying?")
+        @ConfigEntry(nameKey = "prop.partyFlying.name", descriptionKey = "prop.partyFlying.desc", comment = "Do parrots party when they're flying?")
         public boolean partyFlying = true;
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partyStanding.name", descriptionKey = "config.partyparrots.prop.partyStanding.desc", comment = "Do parrots party when they're standing?")
+        @ConfigEntry(nameKey = "prop.partyStanding.name", descriptionKey = "prop.partyStanding.desc", comment = "Do parrots party when they're standing?")
         public boolean partyStanding = true;
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partySitting.name", descriptionKey = "config.partyparrots.prop.partySitting.desc", comment = "Do parrots party when they're sitting?")
+        @ConfigEntry(nameKey = "prop.partySitting.name", descriptionKey = "prop.partySitting.desc", comment = "Do parrots party when they're sitting?")
         public boolean partySitting = false;
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partyTwerk.name", descriptionKey = "config.partyparrots.prop.partyTwerk.desc", comment = "Do parrots party when players twerk?")
+        @ConfigEntry(nameKey = "prop.partyTwerk.name", descriptionKey = "prop.partyTwerk.desc", comment = "Do parrots party when players twerk?")
         public boolean partyTwerk = false;
 
-        @ConfigEntry(nameKey = "config.partyparrots.prop.partyTwerkRange.name", descriptionKey = "config.partyparrots.prop.partyTwerkRange.desc", comment = "How far do players have to be twerking for parrots to PARTY?!", requiresRestart = true)
+        @ConfigEntry(nameKey = "prop.partyTwerkRange.name", descriptionKey = "prop.partyTwerkRange.desc", comment = "How far do players have to be twerking for parrots to PARTY?!", requiresRestart = true)
         @ConfigEntry.BoundedDouble(min = 2D, max = 32D)
         public double partyTwerkRange = 5D;
     }

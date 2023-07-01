@@ -27,7 +27,7 @@ public abstract class TwerkHandler
 
     public void onPlayerTickEnd(Player player)
     {
-        if(player.level.isClientSide)
+        if(player.level().isClientSide)
         {
             if(player.isShiftKeyDown() && !playerTwerks.containsKey(player))
             {
