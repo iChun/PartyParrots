@@ -12,32 +12,32 @@ public class ConfigForge extends Config
     {
         builder.comment("Party settings").push("party");
 
-        final ForgeConfigSpec.BooleanValue cPartyShoulder = builder.comment("Do parrots party when they're on your shoulder?")
+        final ForgeConfigSpec.BooleanValue cPartyShoulder = builder.comment(Reference.PARTY_SHOULDER_COMMENT)
                 .translation("config.partyparrots.prop.partyShoulder.desc")
                 .define("partyShoulder", true);
         partyShoulder = new ConfigWrapper<>(cPartyShoulder::get, cPartyShoulder::set, cPartyShoulder::save);
 
-        final ForgeConfigSpec.BooleanValue cPartyFlying = builder.comment("Do parrots party when they're flying?")
+        final ForgeConfigSpec.BooleanValue cPartyFlying = builder.comment(Reference.PARTY_FLYING_COMMENT)
                 .translation("config.partyparrots.prop.partyFlying.desc")
                 .define("partyFlying", true);
         partyFlying = new ConfigWrapper<>(cPartyFlying::get, cPartyFlying::set, cPartyFlying::save);
 
-        final ForgeConfigSpec.BooleanValue cPartyStanding = builder.comment("Do parrots party when they're standing?")
+        final ForgeConfigSpec.BooleanValue cPartyStanding = builder.comment(Reference.PARTY_STANDING_COMMENT)
                 .translation("config.partyparrots.prop.partyStanding.desc")
                 .define("partyStanding", true);
         partyStanding = new ConfigWrapper<>(cPartyStanding::get, cPartyStanding::set, cPartyStanding::save);
 
-        final ForgeConfigSpec.BooleanValue cPartySitting = builder.comment("Do parrots party when they're sitting?")
+        final ForgeConfigSpec.BooleanValue cPartySitting = builder.comment(Reference.PARTY_SITTING_COMMENT)
                 .translation("config.partyparrots.prop.partySitting.desc")
                 .define("partySitting", false);
         partySitting = new ConfigWrapper<>(cPartySitting::get, cPartySitting::set, cPartyStanding::save);
 
-        final ForgeConfigSpec.BooleanValue cPartyTwerk = builder.comment("Do parrots party when players twerk?")
+        final ForgeConfigSpec.BooleanValue cPartyTwerk = builder.comment(Reference.PARTY_TWERK_COMMENT)
                 .translation("config.partyparrots.prop.partyTwerk.desc")
                 .define("partyTwerk", false);
         partyTwerk = new ConfigWrapper<>(cPartyTwerk::get, cPartyTwerk::set, cPartyTwerk::save);
 
-        final ForgeConfigSpec.DoubleValue cPartyTwerkRange = builder.comment("How far do players have to be twerking for parrots to PARTY?!")
+        final ForgeConfigSpec.DoubleValue cPartyTwerkRange = builder.comment(Reference.PARTY_TWERK_RANGE_COMMENT)
                 .translation("config.partyparrots.prop.partyTwerkRange.desc")
                 .defineInRange("partyTwerkRange", 5D, 2D, 32D);
         partyTwerkRange = new ConfigWrapper<>(cPartyTwerkRange::get, cPartyTwerkRange::set, cPartyTwerkRange::save);

@@ -45,22 +45,22 @@ public class ConfigFabric extends Config
             return "General configs that don't fit any other category.";
         }
 
-        @ConfigEntry(nameKey = "prop.partyShoulder.name", descriptionKey = "prop.partyShoulder.desc", comment = "Do parrots party when they're on your shoulder?")
+        @ConfigEntry(nameKey = "prop.partyShoulder.name", descriptionKey = "prop.partyShoulder.desc", comment = Reference.PARTY_SHOULDER_COMMENT)
         public boolean partyShoulder = true;
 
-        @ConfigEntry(nameKey = "prop.partyFlying.name", descriptionKey = "prop.partyFlying.desc", comment = "Do parrots party when they're flying?")
+        @ConfigEntry(nameKey = "prop.partyFlying.name", descriptionKey = "prop.partyFlying.desc", comment = Reference.PARTY_FLYING_COMMENT)
         public boolean partyFlying = true;
 
-        @ConfigEntry(nameKey = "prop.partyStanding.name", descriptionKey = "prop.partyStanding.desc", comment = "Do parrots party when they're standing?")
+        @ConfigEntry(nameKey = "prop.partyStanding.name", descriptionKey = "prop.partyStanding.desc", comment = Reference.PARTY_STANDING_COMMENT)
         public boolean partyStanding = true;
 
-        @ConfigEntry(nameKey = "prop.partySitting.name", descriptionKey = "prop.partySitting.desc", comment = "Do parrots party when they're sitting?")
+        @ConfigEntry(nameKey = "prop.partySitting.name", descriptionKey = "prop.partySitting.desc", comment = Reference.PARTY_SITTING_COMMENT)
         public boolean partySitting = false;
 
-        @ConfigEntry(nameKey = "prop.partyTwerk.name", descriptionKey = "prop.partyTwerk.desc", comment = "Do parrots party when players twerk?")
+        @ConfigEntry(nameKey = "prop.partyTwerk.name", descriptionKey = "prop.partyTwerk.desc", comment = Reference.PARTY_TWERK_COMMENT)
         public boolean partyTwerk = false;
 
-        @ConfigEntry(nameKey = "prop.partyTwerkRange.name", descriptionKey = "prop.partyTwerkRange.desc", comment = "How far do players have to be twerking for parrots to PARTY?!", requiresRestart = true)
+        @ConfigEntry(nameKey = "prop.partyTwerkRange.name", descriptionKey = "prop.partyTwerkRange.desc", comment = Reference.PARTY_TWERK_RANGE_COMMENT, requiresRestart = true)
         @ConfigEntry.BoundedDouble(min = 2D, max = 32D)
         public double partyTwerkRange = 5D;
     }

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerMixin
 {
     @Inject(method = "tick", at = @At("TAIL"))
-    private void tick(CallbackInfo ci)
+    private void partyparrots_tick(CallbackInfo ci)
     {
         PartyParrots.eventHandlerClient.firePlayerTickEndEvent(((Player)(Object)this));
     }

@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ParrotModelMixin
 {
     @Inject(method = "renderOnShoulder", at = @At("HEAD"), cancellable = true)
-    private void renderOnShoulder(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch, int tickCount, CallbackInfo ci)
+    private void partyparrots_renderOnShoulder(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float limbSwing, float limbSwingAmount, float netHeadYaw, float headPitch, int tickCount, CallbackInfo ci)
     {
         if(PartyParrots.config.partyShoulder.get())
         {

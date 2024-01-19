@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 public abstract class ClientLevelMixin
 {
     @Inject(method = "<init>", at = @At("TAIL"))
-    private void constructor(ClientPacketListener pConnection, ClientLevel.ClientLevelData pClientLevelData, ResourceKey<Level> pDimension, Holder<DimensionType> pDimensionType, int pViewDistance, int pServerSimulationDistance, Supplier<ProfilerFiller> pProfiler, LevelRenderer pLevelRenderer, boolean pIsDebug, long pBiomeZoomSeed, CallbackInfo ci)
+    private void partyparrots_constructor(ClientPacketListener pConnection, ClientLevel.ClientLevelData pClientLevelData, ResourceKey<Level> pDimension, Holder<DimensionType> pDimensionType, int pViewDistance, int pServerSimulationDistance, Supplier<ProfilerFiller> pProfiler, LevelRenderer pLevelRenderer, boolean pIsDebug, long pBiomeZoomSeed, CallbackInfo ci)
     {
         PartyParrots.eventHandlerClient.fireClientLevelLoad(((ClientLevel)(Object)this));
     }
