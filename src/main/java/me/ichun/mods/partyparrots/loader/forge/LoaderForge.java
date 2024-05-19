@@ -1,14 +1,14 @@
 package me.ichun.mods.partyparrots.loader.forge;
 
+import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
+import me.ichun.mods.partyparrots.common.core.Config;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 
 
 @Mod(PartyParrots.MOD_ID)
@@ -30,10 +30,7 @@ public class LoaderForge extends PartyParrots
 
     private void setupConfig()
     {
-        //build the config
-        ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
-        config = new ConfigForge(configBuilder);
-        //register the config. This loads the config for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, configBuilder.build(), MOD_ID + ".toml");
+        //register config
+        config = iChunUtil.d().registerConfig(new Config());
     }
 }

@@ -18,7 +18,7 @@ public abstract class TwerkHandler
     {
         if(living instanceof Parrot parrot)
         {
-            if(PartyParrots.config.partyTwerk.get() && withinTwerkRange(parrot))
+            if(PartyParrots.config.partyTwerk && withinTwerkRange(parrot))
             {
                 ((ParrotAccessorMixin)parrot).setPartyParrot(true);
             }
@@ -64,7 +64,7 @@ public abstract class TwerkHandler
     {
         for(Map.Entry<Player, TwerkInfo> e : playerTwerks.entrySet())
         {
-            if(e.getValue().isTwerking() && parrot.distanceTo(e.getKey()) < PartyParrots.config.partyTwerkRange.get())
+            if(e.getValue().isTwerking() && parrot.distanceTo(e.getKey()) < PartyParrots.config.partyTwerkRange)
             {
                 return true;
             }

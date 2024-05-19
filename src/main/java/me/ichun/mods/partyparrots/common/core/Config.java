@@ -1,79 +1,47 @@
 package me.ichun.mods.partyparrots.common.core;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import me.ichun.mods.ichunutil.common.config.ConfigBase;
+import me.ichun.mods.ichunutil.common.config.annotations.Prop;
+import me.ichun.mods.partyparrots.common.PartyParrots;
+import org.jetbrains.annotations.NotNull;
 
-public abstract class Config
+public class Config extends ConfigBase
 {
-    public ConfigWrapper<Boolean> partyShoulder;
-    public ConfigWrapper<Boolean> partyFlying;
-    public ConfigWrapper<Boolean> partyStanding;
-    public ConfigWrapper<Boolean> partySitting;
-    public ConfigWrapper<Boolean> partyTwerk;
-    public ConfigWrapper<Double> partyTwerkRange;
+    public boolean partyShoulder = true;
 
-    protected static class Reference
+    public boolean partyFlying = true;
+
+    public boolean partyStanding = true;
+
+    public boolean partySitting = false;
+
+    public boolean partyTwerk = false;
+
+    @Prop(min = 2D, max = 32D)
+    public double partyTwerkRange = 5D;
+
+    public Config()
     {
-        public static final String PARTY_SHOULDER_COMMENT = "Do parrots party when they're on your shoulder?";
-        public static final String PARTY_FLYING_COMMENT = "Do parrots party when they're flying?";
-        public static final String PARTY_STANDING_COMMENT = "Do parrots party when they're standing?";
-        public static final String PARTY_SITTING_COMMENT = "Do parrots party when they're sitting?";
-        public static final String PARTY_TWERK_COMMENT = "Do parrots party when players twerk?";
-        public static final String PARTY_TWERK_RANGE_COMMENT = "How far do players have to be twerking for parrots to PARTY?!";
-
+        super(PartyParrots.MOD_ID + ".toml");
     }
 
-    private boolean twerkHandlerRegistered = false;
-    public void onConfigChange()
+    @NotNull
+    @Override
+    public String getModId()
     {
-        regTwerkHandlerInternal();
+        return PartyParrots.MOD_ID;
     }
 
-    public void regTwerkHandlerInternal()
+    @NotNull
+    @Override
+    public String getConfigName()
     {
-        if(!twerkHandlerRegistered)
-        {
-            twerkHandlerRegistered = true;
-            registerTwerkHandler();
-        }
+        return PartyParrots.MOD_NAME;
     }
 
-    public abstract void registerTwerkHandler();
-
-    public static class ConfigWrapper<T>
+    @Override
+    public Type getConfigType()
     {
-        public final Supplier<T> getter;
-        public final Consumer<T> setter;
-        public final Runnable saver;
-
-        public ConfigWrapper(Supplier<T> getter, Consumer<T> setter) {
-            this.getter = getter;
-            this.setter = setter;
-            this.saver = null;
-        }
-
-        public ConfigWrapper(Supplier<T> getter, Consumer<T> setter, Runnable saver) {
-            this.getter = getter;
-            this.setter = setter;
-            this.saver = saver;
-        }
-
-        public T get()
-        {
-            return getter.get();
-        }
-
-        public void set(T obj)
-        {
-            setter.accept(obj);
-        }
-
-        public void save()
-        {
-            if(saver != null)
-            {
-                saver.run();
-            }
-        }
+        return Type.CLIENT;
     }
 }
