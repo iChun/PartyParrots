@@ -1,7 +1,7 @@
 package me.ichun.mods.partyparrots.loader.fabric;
 
-import me.ichun.mods.ichunutil.api.fabric.event.FabricEvents;
-import me.ichun.mods.ichunutil.api.fabric.event.client.FabricClientEvents;
+import me.ichun.mods.ichunutil.loader.fabric.event.FabricEvents;
+import me.ichun.mods.ichunutil.loader.fabric.event.client.FabricClientEvents;
 import me.ichun.mods.partyparrots.common.core.TwerkHandler;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
