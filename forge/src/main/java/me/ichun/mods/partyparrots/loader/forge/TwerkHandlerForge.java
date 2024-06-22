@@ -17,21 +17,15 @@ public class TwerkHandlerForge extends TwerkHandler
     }
 
     @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event)
+    public void onPlayerTick(TickEvent.PlayerTickEvent.Post event)
     {
-        if(event.phase == TickEvent.Phase.END)
-        {
-            onPlayerTickEnd(event.player);
-        }
+        onPlayerTickEnd(event.player);
     }
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
+    public void onClientTick(TickEvent.ClientTickEvent.Post event)
     {
-        if(event.phase == TickEvent.Phase.END)
-        {
-            onClientTickEnd(Minecraft.getInstance());
-        }
+        onClientTickEnd(Minecraft.getInstance());
     }
 
     @SubscribeEvent
