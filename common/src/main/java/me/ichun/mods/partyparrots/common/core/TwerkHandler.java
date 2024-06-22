@@ -1,5 +1,6 @@
 package me.ichun.mods.partyparrots.common.core;
 
+import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import me.ichun.mods.partyparrots.mixin.ParrotAccessorMixin;
 import net.minecraft.client.Minecraft;
@@ -13,6 +14,12 @@ import java.util.WeakHashMap;
 public abstract class TwerkHandler
 {
     public static WeakHashMap<Player, TwerkInfo> playerTwerks = new WeakHashMap<>();
+
+    public TwerkHandler()
+    {
+        iChunUtil.eS().registerPlayerTickEndListener(this::onPlayerTickEnd);
+        iChunUtil.eC().registerClientTickEndListener(this::onClientTickEnd);
+    }
 
     public void onRenderLivingPre(LivingEntity living)
     {

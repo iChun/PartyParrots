@@ -1,10 +1,8 @@
 package me.ichun.mods.partyparrots.loader.forge;
 
 import me.ichun.mods.partyparrots.common.core.TwerkHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -14,18 +12,6 @@ public class TwerkHandlerForge extends TwerkHandler
     public void onRenderLivingPre(RenderLivingEvent.Pre event)
     {
         onRenderLivingPre(event.getEntity());
-    }
-
-    @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent.Post event)
-    {
-        onPlayerTickEnd(event.player);
-    }
-
-    @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent.Post event)
-    {
-        onClientTickEnd(Minecraft.getInstance());
     }
 
     @SubscribeEvent

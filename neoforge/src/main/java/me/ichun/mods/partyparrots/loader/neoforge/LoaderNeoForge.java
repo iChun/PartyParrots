@@ -29,14 +29,9 @@ public class LoaderNeoForge extends PartyParrots
     @OnlyIn(net.neoforged.api.distmarker.Dist.CLIENT)
     private void initClient(IEventBus modEventBus)
     {
-        setupConfig(modEventBus);
-        NeoForge.EVENT_BUS.register(PartyParrots.eventHandlerClient = new EventHandlerClientNeoForge());
-    }
-
-    @OnlyIn(net.neoforged.api.distmarker.Dist.CLIENT)
-    private void setupConfig(IEventBus modEventBus)
-    {
         //register config
         config = iChunUtil.d().registerConfig(new Config(), modEventBus);
+
+        NeoForge.EVENT_BUS.register(PartyParrots.eventHandlerClient = new EventHandlerClientNeoForge());
     }
 }

@@ -4,6 +4,7 @@ import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import me.ichun.mods.partyparrots.common.core.Config;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.IExtensionPoint;
@@ -18,19 +19,19 @@ public class LoaderForge extends PartyParrots
     {
         modProxy = this;
 
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            setupConfig();
-            MinecraftForge.EVENT_BUS.register(PartyParrots.eventHandlerClient = new EventHandlerClientForge());
-        });
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> this::initClient);
         DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> LOGGER.error("You are loading " + MOD_NAME + " on a server. " + MOD_NAME + " is a client only mod!"));
 
         //Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, IExtensionPoint.DisplayTest.IGNORE_ALL_VERSION);
     }
 
-    private void setupConfig()
+    @OnlyIn(Dist.CLIENT)
+    private void initClient()
     {
         //register config
         config = iChunUtil.d().registerConfig(new Config());
+
+        MinecraftForge.EVENT_BUS.register(PartyParrots.eventHandlerClient = new EventHandlerClientForge());
     }
 }
