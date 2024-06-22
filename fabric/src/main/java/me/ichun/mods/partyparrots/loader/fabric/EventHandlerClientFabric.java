@@ -9,4 +9,10 @@ public class EventHandlerClientFabric extends EventHandlerClient
     {
         FabricClientEvents.LIVING_RENDER_PRE.register((living, renderer, partialTick) -> onRenderLivingPre(living));
     }
+
+    @Override
+    public void registerTwerkHandler()
+    {
+        new TwerkHandlerFabric();
+    }
 }

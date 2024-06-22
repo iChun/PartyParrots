@@ -5,8 +5,12 @@ import me.ichun.mods.ichunutil.common.config.annotations.Prop;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Field;
+
 public class Config extends ConfigBase
 {
+    public transient boolean registeredTwerkHandler = false;
+
     public boolean partyShoulder = true;
 
     public boolean partyFlying = true;
@@ -43,5 +47,29 @@ public class Config extends ConfigBase
     public Type getConfigType()
     {
         return Type.CLIENT;
+    }
+
+    @Override
+    public void onConfigLoaded()
+    {
+        checkForTwerk();
+    }
+
+    @Override
+    public void onPropertyChanged(boolean file, String name, Field field, Object oldObj, Object newObj)
+    {
+        if(field.getName().equals("partyTwerk"))
+        {
+            checkForTwerk();
+        }
+    }
+
+    public void checkForTwerk()
+    {
+        if(partyTwerk && !registeredTwerkHandler)
+        {
+            registeredTwerkHandler = true;
+            PartyParrots.eventHandlerClient.registerTwerkHandler();
+        }
     }
 }

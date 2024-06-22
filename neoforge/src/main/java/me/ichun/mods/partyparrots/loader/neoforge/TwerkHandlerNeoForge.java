@@ -2,7 +2,6 @@ package me.ichun.mods.partyparrots.loader.neoforge;
 
 import me.ichun.mods.partyparrots.common.core.TwerkHandler;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -18,11 +17,5 @@ public class TwerkHandlerNeoForge extends TwerkHandler
     public void onWorldLoad(LevelEvent.Load event)
     {
         onLevelLoad();
-    }
-
-    @SubscribeEvent
-    public void onLoggedOutEvent(ClientPlayerNetworkEvent.LoggingOut event)
-    {
-        onClientDisconnected();
     }
 }

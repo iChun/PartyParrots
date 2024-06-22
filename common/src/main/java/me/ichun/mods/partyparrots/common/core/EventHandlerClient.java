@@ -19,4 +19,6 @@ public abstract class EventHandlerClient
             }
         }
     }
+
+    public abstract void registerTwerkHandler();
 }

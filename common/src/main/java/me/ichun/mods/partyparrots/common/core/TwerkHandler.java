@@ -19,6 +19,8 @@ public abstract class TwerkHandler
     {
         iChunUtil.eS().registerPlayerTickEndListener(this::onPlayerTickEnd);
         iChunUtil.eC().registerClientTickEndListener(this::onClientTickEnd);
+
+        iChunUtil.eC().registerOnClientDisconnectListener(client -> onClientDisconnected());
     }
 
     public void onRenderLivingPre(LivingEntity living)
