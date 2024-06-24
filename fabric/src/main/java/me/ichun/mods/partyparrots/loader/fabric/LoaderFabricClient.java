@@ -13,9 +13,9 @@ public class LoaderFabricClient extends PartyParrots
     {
         modProxy = this;
 
+        eventHandlerClient = new EventHandlerClientFabric();
+
         //register config
         config = iChunUtil.d().registerConfig(new Config());
-
-        PartyParrots.eventHandlerClient = new EventHandlerClientFabric();
     }
 }

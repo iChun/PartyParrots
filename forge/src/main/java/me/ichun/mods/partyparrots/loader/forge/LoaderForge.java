@@ -29,9 +29,9 @@ public class LoaderForge extends PartyParrots
     @OnlyIn(Dist.CLIENT)
     private void initClient()
     {
+        MinecraftForge.EVENT_BUS.register(eventHandlerClient = new EventHandlerClientForge());
+
         //register config
         config = iChunUtil.d().registerConfig(new Config());
-
-        MinecraftForge.EVENT_BUS.register(PartyParrots.eventHandlerClient = new EventHandlerClientForge());
     }
 }
