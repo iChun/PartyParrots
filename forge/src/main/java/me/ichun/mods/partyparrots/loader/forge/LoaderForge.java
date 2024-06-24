@@ -1,10 +1,12 @@
 package me.ichun.mods.partyparrots.loader.forge;
 
+import me.ichun.mods.ichunutil.client.gui.config.WorkspaceConfigs;
 import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import me.ichun.mods.partyparrots.common.core.Config;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.IExtensionPoint;
@@ -33,5 +35,7 @@ public class LoaderForge extends PartyParrots
 
         //register config
         config = iChunUtil.d().registerConfig(new Config());
+
+        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () -> new ConfigScreenHandler.ConfigScreenFactory(WorkspaceConfigs::new));
     }
 }
