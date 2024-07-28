@@ -13,7 +13,7 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
-@Mod(PartyParrots.MOD_ID)
+@Mod(value = PartyParrots.MOD_ID, dist = Dist.CLIENT)
 public class LoaderNeoForge extends PartyParrots
 {
     public LoaderNeoForge(IEventBus modEventBus)
