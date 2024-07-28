@@ -38,6 +38,6 @@ public class LoaderNeoForge extends PartyParrots
         //register config
         config = iChunUtil.d().registerConfig(new Config(), modEventBus);
 
-        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (minecraft, screen) -> new WorkspaceConfigs(screen));
+        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (modContainer, screen) -> new WorkspaceConfigs(screen));
     }
 }
