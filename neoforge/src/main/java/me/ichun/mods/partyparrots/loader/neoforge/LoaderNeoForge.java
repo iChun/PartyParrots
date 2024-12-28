@@ -4,6 +4,7 @@ import me.ichun.mods.ichunutil.client.gui.config.WorkspaceConfigs;
 import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import me.ichun.mods.partyparrots.common.core.Config;
+import me.ichun.mods.partyparrots.common.core.EventHandlerClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -11,7 +12,6 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(value = PartyParrots.MOD_ID, dist = Dist.CLIENT)
 public class LoaderNeoForge extends PartyParrots
@@ -33,7 +33,7 @@ public class LoaderNeoForge extends PartyParrots
     @OnlyIn(Dist.CLIENT)
     private void initClient(IEventBus modEventBus)
     {
-        NeoForge.EVENT_BUS.register(eventHandlerClient = new EventHandlerClientNeoForge());
+        eventHandlerClient = new EventHandlerClient();
 
         //register config
         config = iChunUtil.d().registerConfig(new Config(), modEventBus);

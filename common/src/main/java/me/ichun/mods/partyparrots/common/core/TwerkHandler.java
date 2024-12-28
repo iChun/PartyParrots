@@ -2,8 +2,10 @@ package me.ichun.mods.partyparrots.common.core;
 
 import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
-import me.ichun.mods.partyparrots.mixin.ParrotAccessorMixin;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ParrotModel;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.entity.state.ParrotRenderState;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public abstract class TwerkHandler
+public class TwerkHandler
 {
     public static WeakHashMap<Player, TwerkInfo> playerTwerks = new WeakHashMap<>();
 
@@ -21,15 +23,18 @@ public abstract class TwerkHandler
         iChunUtil.eC().registerClientTickEndListener(this::onClientTickEnd);
 
         iChunUtil.eC().registerOnClientDisconnectListener(client -> onClientDisconnected());
+
+        iChunUtil.eC().registerLivingRenderPreListener(event -> onRenderLivingPre(event.livingEntity(), event.renderState()));
+        iChunUtil.eC().registerClientLevelLoadListener(level -> onLevelLoad());
     }
 
-    public void onRenderLivingPre(LivingEntity living)
+    public void onRenderLivingPre(LivingEntity living, LivingEntityRenderState renderState)
     {
-        if(living instanceof Parrot parrot)
+        if(living instanceof Parrot parrot && renderState instanceof ParrotRenderState parrotRenderState)
         {
             if(PartyParrots.config.partyTwerk && withinTwerkRange(parrot))
             {
-                ((ParrotAccessorMixin)parrot).setPartyParrot(true);
+                parrotRenderState.pose = ParrotModel.Pose.PARTY;
             }
         }
     }

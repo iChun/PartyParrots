@@ -3,6 +3,7 @@ package me.ichun.mods.partyparrots.loader.fabric;
 import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.partyparrots.common.PartyParrots;
 import me.ichun.mods.partyparrots.common.core.Config;
+import me.ichun.mods.partyparrots.common.core.EventHandlerClient;
 import net.fabricmc.api.ClientModInitializer;
 
 public class LoaderFabricClient extends PartyParrots
@@ -13,7 +14,7 @@ public class LoaderFabricClient extends PartyParrots
     {
         modProxy = this;
 
-        eventHandlerClient = new EventHandlerClientFabric();
+        eventHandlerClient = new EventHandlerClient();
 
         //register config
         config = iChunUtil.d().registerConfig(new Config());
