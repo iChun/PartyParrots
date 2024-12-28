@@ -22,5 +22,10 @@ public abstract class ParrotOnShoulderLayerMixin
         {
             ((ParrotOnShoulderLayerAccessorMixin)(Object)this).getParrotState().pose = ParrotModel.Pose.PARTY;
         }
+        else if(PartyParrots.config.needsShoulderResetting)
+        {
+            PartyParrots.config.needsShoulderResetting = false;
+            ((ParrotOnShoulderLayerAccessorMixin)(Object)this).getParrotState().pose = ParrotModel.Pose.ON_SHOULDER;
+        }
     }
 }

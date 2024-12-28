@@ -24,6 +24,8 @@ public class Config extends ConfigBase
     @Prop(min = 2D, max = 32D)
     public double partyTwerkRange = 5D;
 
+    public transient boolean needsShoulderResetting = false;
+
     public Config()
     {
         super(PartyParrots.MOD_ID + ".toml");
@@ -58,7 +60,14 @@ public class Config extends ConfigBase
     @Override
     public void onPropertyChanged(boolean file, String name, Field field, Object oldObj, Object newObj)
     {
-        if(field.getName().equals("partyTwerk"))
+        if(field.getName().equals("partyShoulder"))
+        {
+            if(!partyShoulder) //we've turned it off
+            {
+                needsShoulderResetting = true;
+            }
+        }
+        else if(field.getName().equals("partyTwerk"))
         {
             checkForTwerk();
         }
