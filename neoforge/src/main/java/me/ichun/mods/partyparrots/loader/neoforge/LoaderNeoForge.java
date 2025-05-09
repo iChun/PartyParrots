@@ -38,7 +38,7 @@ public class LoaderNeoForge extends PartyParrots
         eventHandlerClient = new EventHandlerClient();
 
         //register config
-        config = iChunUtil.d().registerConfig(new Config(), modEventBus);
+        config = iChunUtil.d().registerConfig(new Config(), modEventBus, container);
 
         container.registerExtensionPoint(IConfigScreenFactory.class, (Supplier<IConfigScreenFactory>)() -> (modContainer, screen) -> new WorkspaceConfigs(screen, MOD_ID));
     }
